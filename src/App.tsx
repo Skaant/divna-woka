@@ -1,7 +1,13 @@
-import React from "react";
+import Carto from "./Carto";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <>
+        <Carto />
+      </>
+    </div>
+  );
 }
 
 export default App;
