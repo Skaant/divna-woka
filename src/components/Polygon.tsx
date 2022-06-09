@@ -11,6 +11,8 @@ const {
   WIDTH,
   HEIGHT,
   LAT_LONG_METERS_PERCENTS,
+  MICRO_COORD_LONG_VIEWPORT,
+  MICRO_COORD_LAT_VIEWPORT,
 } = CARTO_DATA;
 
 function Polygon({
@@ -50,12 +52,26 @@ function Polygon({
         fill={hovered ? "#e55" : fill}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+        style={{ cursor: "pointer" }}
       />
       {hovered && (
         <text
-          x={points.reduce((x, [long]) => x + long, 0) / points.length}
-          y={points.reduce((y, [long]) => y + long, 0) / points.length}
-          style={{ fontSize: 4, zIndex: 1000 }}
+          x={
+            ((points.reduce((x, [_, long]) => x + long, 0) / points.length -
+              LONG_MIN) *
+              1000000 *
+              MICRO_COORD_LONG_VIEWPORT) /
+            1000
+          }
+          y={
+            LAT_LONG_METERS_PERCENTS -
+            ((points.reduce((y, [lat]) => y + lat, 0) / points.length -
+              LAT_MIN) *
+              1000000 *
+              MICRO_COORD_LAT_VIEWPORT) /
+              1000
+          }
+          style={{ fontSize: 4 }}
         >
           {name}
         </text>
