@@ -10,4 +10,8 @@ export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
     [44.518606, 5.676122],
     [44.518552, 5.676041],
   ],
+  flora: {
+    LAVANDULA_ANGUSTIFOLIA: "11..100",
+    PINUS_SYLVESTRIS: 2,
+  },
 };
