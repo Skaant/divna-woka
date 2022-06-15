@@ -1,0 +1,10 @@
+export enum PLANTS {
+  /** Aphyllante de Montpellier */
+  APHYLLANTHES_MONSPELIENSIS = "APHYLLANTHES_MONSPELIENSIS",
+  /** Lavande vraie */
+  LAVANDULA_ANGUSTIFOLIA = "LAVANDULA_ANGUSTIFOLIA",
+  /** Genêt à balais */
+  CYTISUS_SCOPARIUS = "CYTISUS_SCOPARIUS",
+  /** Pin sylvestre */
+  PINUS_SYLVESTRIS = "PINUS_SYLVESTRIS",
+}
