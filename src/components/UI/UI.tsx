@@ -2,7 +2,7 @@ import React from "react";
 import { Selection } from "../../types/Selection";
 import CoordsScale from "./CoordsScale";
 
-function UI({ selection }: { selection: Selection }) {
+function UI({ hover, selection }: { hover: Selection; selection: Selection }) {
   return (
     <div
       style={{
@@ -40,7 +40,7 @@ function UI({ selection }: { selection: Selection }) {
           width: "100%",
         }}
       >
-        {selection && (
+        {(hover || selection) && (
           <div
             style={{
               marginBottom: "-1rem",
@@ -52,7 +52,7 @@ function UI({ selection }: { selection: Selection }) {
               borderRadius: "1rem",
             }}
           >
-            <h2>{selection.name}</h2>
+            <h2>{(hover || selection)?.name}</h2>
           </div>
         )}
       </div>

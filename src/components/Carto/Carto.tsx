@@ -11,9 +11,13 @@ const { WIDTH, HEIGHT, LAT_LONG_METERS_PERCENTS } = CARTO_DATA;
 const LEVELS_COLOR = ["#888", "#8aa", "#8cc"];
 
 function Carto({
+  hover,
+  setHover,
   selection,
   setSelection,
 }: {
+  hover: Selection;
+  setHover: Dispatch<SetStateAction<Selection>>;
   selection: Selection;
   setSelection: Dispatch<SetStateAction<Selection>>;
 }) {
@@ -29,6 +33,8 @@ function Carto({
             key={area.id}
             {...area}
             fill={LEVELS_COLOR[index]}
+            hover={hover}
+            setHover={setHover}
             selection={selection}
             setSelection={setSelection}
           />

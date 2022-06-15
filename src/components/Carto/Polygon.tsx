@@ -16,16 +16,21 @@ const {
 
 function Polygon({
   fill = "#888",
+  hover,
+  setHover,
   selection,
   setSelection,
   ...area
 }: Area & {
   fill?: string;
+  hover: Selection;
+  setHover: Dispatch<SetStateAction<Selection>>;
   selection: Selection;
   setSelection: Dispatch<SetStateAction<Selection>>;
 }) {
   const { id, coords } = area;
-  const selected = id === selection?.id;
+  const hovered = hover && id === hover.id;
+  const selected = selection && id === selection.id;
   return (
     <>
       <polygon
@@ -50,9 +55,10 @@ function Polygon({
               }`
           )
           .join(" ")}
-        fill={selected ? "#e55" : fill}
-        onMouseEnter={() => setSelection(area)}
-        onMouseLeave={() => setSelection(undefined)}
+        fill={hovered ? "#a22" : selected ? "#e55" : fill}
+        onMouseEnter={() => setHover(area)}
+        onMouseLeave={() => setHover(undefined)}
+        onClick={() => setSelection(area)}
         style={{ cursor: "pointer" }}
       />
     </>

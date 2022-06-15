@@ -4,12 +4,18 @@ import { Selection } from "../types/Selection";
 import UI from "./UI/UI";
 
 function App() {
+  const [hover, setHover] = useState<Selection>(undefined);
   const [selection, setSelection] = useState<Selection>(undefined);
   return (
     <div>
       <>
-        <Carto selection={selection} setSelection={setSelection} />
-        <UI selection={selection} />
+        <Carto
+          hover={hover}
+          setHover={setHover}
+          selection={selection}
+          setSelection={setSelection}
+        />
+        <UI hover={hover} selection={selection} />
       </>
     </div>
   );
