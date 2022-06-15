@@ -1,9 +1,10 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import Polygon from "./components/Polygon";
 import { CARTO_DATA } from "./data/carto.data";
 import { LEVEL_0_AREAS } from "./data/areas/level-0";
 import { LEVEL_1_AREAS } from "./data/areas/level-1";
 import { LEVEL_2_AREAS } from "./data/areas/level-2";
+import { Selection } from "./types/Selection";
 
 const {
   MICRO_COORD_LAT_METERS,
@@ -17,7 +18,13 @@ const {
 
 const LEVELS_COLOR = ["#888", "#8aa", "#8cc"];
 
-function Carto() {
+function Carto({
+  selection,
+  setSelection,
+}: {
+  selection: Selection;
+  setSelection: Dispatch<SetStateAction<Selection>>;
+}) {
   return (
     <svg
       width={WIDTH}
@@ -25,12 +32,13 @@ function Carto() {
       viewBox={`0 0 100 ${LAT_LONG_METERS_PERCENTS}`}
     >
       {[LEVEL_0_AREAS, LEVEL_1_AREAS, LEVEL_2_AREAS].map((areas, index) =>
-        areas.map(({ id, name, coords }) => (
+        areas.map((area) => (
           <Polygon
-            key={id}
-            name={name}
-            points={coords}
+            key={area.id}
+            {...area}
             fill={LEVELS_COLOR[index]}
+            selection={selection}
+            setSelection={setSelection}
           />
         ))
       )}
