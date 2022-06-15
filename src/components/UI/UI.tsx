@@ -1,4 +1,6 @@
 import React from "react";
+import { Area } from "../../types/Area";
+import { Flora } from "../../types/Flora";
 import { Selection } from "../../types/Selection";
 import CoordsScale from "./CoordsScale";
 
@@ -47,12 +49,32 @@ function UI({ hover, selection }: { hover: Selection; selection: Selection }) {
               padding: "1rem 1rem 2rem",
               boxShadow: "0 0 5px black",
               backgroundColor: "white",
+              height: hover ? "max-content" : "100vh",
               width: "50%",
-              textAlign: "center",
               borderRadius: "1rem",
             }}
           >
-            <h2>{(hover || selection)?.name}</h2>
+            <h2
+              style={{
+                textAlign: "center",
+              }}
+            >
+              {(hover || selection)?.name}
+            </h2>
+            {!hover && (selection as Area).flora && (
+              <div>
+                <h3 style={{ marginLeft: "8px" }}>Liste des plantes</h3>
+                <ul>
+                  {Object.entries((selection as Area).flora as Flora).map(
+                    ([plant, count]) => (
+                      <li>
+                        {plant} : {count}
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            )}
           </div>
         )}
       </div>
