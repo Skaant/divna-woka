@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
-import Polygon from "./components/Polygon";
-import { CARTO_DATA } from "./data/carto.data";
-import { LEVEL_0_AREAS } from "./data/areas/level-0";
-import { LEVEL_1_AREAS } from "./data/areas/level-1";
-import { LEVEL_2_AREAS } from "./data/areas/level-2";
-import { Selection } from "./types/Selection";
+import Polygon from "./Polygon";
+import { CARTO_DATA } from "../data/carto.data";
+import { LEVEL_0_AREAS } from "../data/areas/level-0";
+import { LEVEL_1_AREAS } from "../data/areas/level-1";
+import { LEVEL_2_AREAS } from "../data/areas/level-2";
+import { Selection } from "../types/Selection";
 
 const {
   MICRO_COORD_LAT_METERS,

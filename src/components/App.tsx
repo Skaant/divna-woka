@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Carto from "./Carto";
-import { Selection } from "./types/Selection";
+import { Selection } from "../types/Selection";
 import UI from "./UI";
 
 function App() {
