@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { CARTO_DATA } from "../data/carto.data";
-import { Coords } from "../types/Coords";
+import { Area } from "../types/Area";
+import { Selection } from "../types/Selection";
 
 const {
   LONG_MIN,
@@ -11,24 +12,24 @@ const {
   WIDTH,
   HEIGHT,
   LAT_LONG_METERS_PERCENTS,
-  MICRO_COORD_LONG_VIEWPORT,
-  MICRO_COORD_LAT_VIEWPORT,
 } = CARTO_DATA;
 
 function Polygon({
-  name,
-  points,
   fill = "#888",
-}: {
-  name: string;
-  points: Coords[];
+  selection,
+  setSelection,
+  ...area
+}: Area & {
   fill?: string;
+  selection: Selection;
+  setSelection: Dispatch<SetStateAction<Selection>>;
 }) {
-  const [hovered, setHovered] = useState(false);
+  const { id, coords } = area;
+  const selected = id === selection?.id;
   return (
     <>
       <polygon
-        points={points
+        points={coords
           .map(
             ([lat, long]) =>
               `${
@@ -49,33 +50,11 @@ function Polygon({
               }`
           )
           .join(" ")}
-        fill={hovered ? "#e55" : fill}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        fill={selected ? "#e55" : fill}
+        onMouseEnter={() => setSelection(area)}
+        onMouseLeave={() => setSelection(undefined)}
         style={{ cursor: "pointer" }}
       />
-      {hovered && (
-        <text
-          x={
-            ((points.reduce((x, [_, long]) => x + long, 0) / points.length -
-              LONG_MIN) *
-              1000000 *
-              MICRO_COORD_LONG_VIEWPORT) /
-            1000
-          }
-          y={
-            LAT_LONG_METERS_PERCENTS -
-            ((points.reduce((y, [lat]) => y + lat, 0) / points.length -
-              LAT_MIN) *
-              1000000 *
-              MICRO_COORD_LAT_VIEWPORT) /
-              1000
-          }
-          style={{ fontSize: 4 }}
-        >
-          {name}
-        </text>
-      )}
     </>
   );
 }
