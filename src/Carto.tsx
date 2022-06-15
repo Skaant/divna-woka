@@ -1,9 +1,9 @@
 import React from "react";
 import Polygon from "./components/Polygon";
 import { CARTO_DATA } from "./data/carto.data";
-import { LAND_SHAPE_DATA } from "./data/shapes/land.shape.data";
-import { SMALLIE_SHAPE_DATA } from "./data/shapes/smallie.shape.data";
-import { STATIONS_SHAPES_DATA } from "./data/shapes/stations.shapes.data";
+import { LEVEL_0_AREAS } from "./data/areas/level-0";
+import { LEVEL_1_AREAS } from "./data/areas/level-1";
+import { LEVEL_2_AREAS } from "./data/areas/level-2";
 
 const {
   MICRO_COORD_LAT_METERS,
@@ -15,6 +15,8 @@ const {
   MICRO_COORD_LAT_VIEWPORT,
 } = CARTO_DATA;
 
+const LEVELS_COLOR = ["#888", "#8aa", "#8cc"];
+
 function Carto() {
   return (
     <svg
@@ -22,11 +24,16 @@ function Carto() {
       height={HEIGHT}
       viewBox={`0 0 100 ${LAT_LONG_METERS_PERCENTS}`}
     >
-      <Polygon name="Grand terrain sauvage" points={LAND_SHAPE_DATA} />
-      <Polygon name="Petit terrain agricole" points={SMALLIE_SHAPE_DATA} />
-      {Object.entries(STATIONS_SHAPES_DATA).map(([station, coords]) => (
-        <Polygon name={station} points={coords} fill={"#bb2"} />
-      ))}
+      {[LEVEL_0_AREAS, LEVEL_1_AREAS, LEVEL_2_AREAS].map((areas, index) =>
+        areas.map(({ id, name, coords }) => (
+          <Polygon
+            key={id}
+            name={name}
+            points={coords}
+            fill={LEVELS_COLOR[index]}
+          />
+        ))
+      )}
       <line
         x1={(100 - MICRO_COORD_LONG_VIEWPORT) / 2}
         y1={LAT_LONG_METERS_PERCENTS / 2}
