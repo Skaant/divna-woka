@@ -1,5 +1,5 @@
 import React from "react";
-import { Selection } from "../types/Selection";
+import { Selection } from "../../types/Selection";
 
 function UI({ selection }: { selection: Selection }) {
   return (
