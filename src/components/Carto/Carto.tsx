@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import Polygon from "../Polygon";
+import Polygon from "./Polygon";
 import { CARTO_DATA } from "../../data/carto.data";
 import { LEVEL_0_AREAS } from "../../data/areas/level-0";
 import { LEVEL_1_AREAS } from "../../data/areas/level-1";

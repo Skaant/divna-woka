@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { CARTO_DATA } from "../data/carto.data";
-import { Area } from "../types/Area";
-import { Selection } from "../types/Selection";
+import { CARTO_DATA } from "../../data/carto.data";
+import { Area } from "../../types/Area";
+import { Selection } from "../../types/Selection";
 
 const {
   LONG_MIN,
