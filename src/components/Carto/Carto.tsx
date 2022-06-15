@@ -6,15 +6,7 @@ import { LEVEL_1_AREAS } from "../../data/areas/level-1";
 import { LEVEL_2_AREAS } from "../../data/areas/level-2";
 import { Selection } from "../../types/Selection";
 
-const {
-  MICRO_COORD_LAT_METERS,
-  PIXELS_BY_METER,
-  WIDTH,
-  HEIGHT,
-  LAT_LONG_METERS_PERCENTS,
-  MICRO_COORD_LONG_VIEWPORT,
-  MICRO_COORD_LAT_VIEWPORT,
-} = CARTO_DATA;
+const { WIDTH, HEIGHT, LAT_LONG_METERS_PERCENTS } = CARTO_DATA;
 
 const LEVELS_COLOR = ["#888", "#8aa", "#8cc"];
 
@@ -42,25 +34,6 @@ function Carto({
           />
         ))
       )}
-      <line
-        x1={(100 - MICRO_COORD_LONG_VIEWPORT) / 2}
-        y1={LAT_LONG_METERS_PERCENTS / 2}
-        x2={MICRO_COORD_LONG_VIEWPORT + (100 - MICRO_COORD_LONG_VIEWPORT) / 2}
-        y2={LAT_LONG_METERS_PERCENTS / 2}
-        stroke="#aabbcc"
-      />
-      <line
-        x1={50}
-        y1={(LAT_LONG_METERS_PERCENTS - MICRO_COORD_LAT_VIEWPORT) / 2}
-        x2={50}
-        y2={
-          MICRO_COORD_LAT_VIEWPORT +
-          (LAT_LONG_METERS_PERCENTS - MICRO_COORD_LAT_VIEWPORT) / 2
-        }
-        stroke="#aabbcc"
-      >
-        {MICRO_COORD_LAT_METERS * PIXELS_BY_METER * 1000}
-      </line>
     </svg>
   );
 }
