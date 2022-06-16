@@ -1,5 +1,9 @@
 import { PLANTS } from "../data/plants/plants.enum";
+import { Plant } from "./Plant";
 
 export type Flora = {
-  [plant in PLANTS]?: number | "1..10" | "11..100" | "100+";
+  [species in PLANTS]?: {
+    count?: number | Range;
+    individuals?: Plant[];
+  };
 };
