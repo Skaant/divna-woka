@@ -1,4 +1,7 @@
 import { Area } from "../../../types/Area";
+import { Plant } from "../../../types/Plant";
+import { Range } from "../../../types/Range";
+import { PLANTS } from "../../plants/plants.enum";
 import { AREAS } from "../areas.enum";
 
 export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
@@ -11,7 +14,24 @@ export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
     [44.518552, 5.676041],
   ],
   flora: {
-    LAVANDULA_ANGUSTIFOLIA: "11..100",
-    PINUS_SYLVESTRIS: 2,
+    LAVANDULA_ANGUSTIFOLIA: {
+      count: [20, 40],
+    },
+    PINUS_SYLVESTRIS: {
+      individuals: [
+        {
+          id: "pinda",
+          name: "Pinda",
+          species: PLANTS.PINUS_SYLVESTRIS,
+          coords: [44.519191, 5.676146],
+        },
+        {
+          id: "pingwu",
+          name: "Pingwu",
+          species: PLANTS.PINUS_SYLVESTRIS,
+          coords: [44.518611, 5.676131],
+        },
+      ],
+    },
   },
 };

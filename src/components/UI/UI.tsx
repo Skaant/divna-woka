@@ -66,9 +66,15 @@ function UI({ hover, selection }: { hover: Selection; selection: Selection }) {
                 <h3 style={{ marginLeft: "8px" }}>Liste des plantes</h3>
                 <ul>
                   {Object.entries((selection as Area).flora as Flora).map(
-                    ([plant, count]) => (
+                    ([plant, { count, individuals }]) => (
                       <li>
-                        {plant} : {count}
+                        <>
+                          {plant} : {count}
+                          {count && individuals && individuals.length
+                            ? " et "
+                            : ""}
+                          {individuals?.map(({ name }) => name).join(", ")}
+                        </>
                       </li>
                     )
                   )}

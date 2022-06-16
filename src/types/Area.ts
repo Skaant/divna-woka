@@ -7,5 +7,5 @@ export type Area = {
   name: string;
   coords: Coords[];
   flora?: Flora;
-  contains: Shape[];
+  contains?: Shape[];
 };
