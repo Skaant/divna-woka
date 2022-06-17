@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { Plant } from "../../../types/Plant";
 import { Selection } from "../../../types/Selection";
 
 function FocusModal({
@@ -30,6 +31,11 @@ function FocusModal({
       >
         {focus?.name}
       </h2>
+      {(focus as Plant).species && (
+        <p style={{ textAlign: "center", width: "100%", marginTop: "-16px" }}>
+          {(focus as Plant).species}
+        </p>
+      )}
       {children}
     </div>
   );
