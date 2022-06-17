@@ -1,5 +1,4 @@
 import { Area } from "../../../types/Area";
-import { SPECIES } from "../../species/species.enum";
 import { AREAS } from "../areas.enum";
 
 export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
@@ -18,14 +17,14 @@ export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
     PINUS_SYLVESTRIS: {
       individuals: [
         {
-          id: "pinda",
-          name: "Pinda",
-          coords: [44.519191, 5.676146],
+          id: "pin-pingu",
+          name: "Pingu",
+          coords: [44.518609, 5.676128],
         },
         {
-          id: "pingwu",
-          name: "Pingwu",
-          coords: [44.518611, 5.676131],
+          id: "pin-pingwan",
+          name: "Pingwan",
+          coords: [44.51861, 5.676081],
         },
       ],
     },
