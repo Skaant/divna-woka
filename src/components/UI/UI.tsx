@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { addFlora } from "../../helpers/addFlora";
 import { Area } from "../../types/Area";
 import { Flora } from "../../types/Flora";
 import { Selection } from "../../types/Selection";
@@ -70,26 +71,35 @@ function UI({
             >
               {(hover || selection)?.name}
             </h2>
-            {!hover && (selection as Area).flora && (
-              <div>
-                <h3 style={{ marginLeft: "8px" }}>Liste des plantes</h3>
-                <ul>
-                  {Object.entries((selection as Area).flora as Flora).map(
-                    ([plant, { count, individuals }]) => (
-                      <li>
-                        <>
-                          {plant} : {count}
-                          {count && individuals && individuals.length
-                            ? " et "
-                            : ""}
-                          {individuals?.map(({ name }) => name).join(", ")}
-                        </>
-                      </li>
-                    )
-                  )}
-                </ul>
-              </div>
-            )}
+            {!hover &&
+              ((selection as Area).flora || (selection as Area).contains) && (
+                <div>
+                  <h3 style={{ marginLeft: "8px" }}>Liste des plantes</h3>
+                  <ul>
+                    {Object.entries(
+                      ((selection as Area).contains || []).reduce<Flora>(
+                        (floraSum, shape) =>
+                          (shape as Area).flora
+                            ? addFlora(floraSum, (shape as Area).flora)
+                            : floraSum,
+                        (selection as Area).flora || {}
+                      )
+                    ).map(([plant, { count, individuals }]) => {
+                      return (
+                        <li>
+                          <>
+                            {plant} : {count}
+                            {count && individuals && individuals.length
+                              ? " et "
+                              : ""}
+                            {individuals?.map(({ name }) => name).join(", ")}
+                          </>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
             {!hover && (selection as Area).contains && (
               <div>
                 <h3>Contiens</h3>
