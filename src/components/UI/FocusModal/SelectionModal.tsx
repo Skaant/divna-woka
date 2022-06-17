@@ -34,7 +34,14 @@ function SelectionModal({
                       {plant} :{" "}
                       {typeof count === "object" ? count.join("...") : count}
                       {count && individuals && individuals.length ? " et " : ""}
-                      {individuals?.map(({ name }) => name).join(", ")}
+                      {individuals?.map((individual) => (
+                        <button
+                          key={individual.id}
+                          onClick={() => setSelection(individual)}
+                        >
+                          {individual.name}
+                        </button>
+                      ))}
                     </>
                   </li>
                 );
