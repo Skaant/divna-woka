@@ -1,10 +1,18 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Area } from "../../types/Area";
 import { Flora } from "../../types/Flora";
 import { Selection } from "../../types/Selection";
 import CoordsScale from "./CoordsScale";
 
-function UI({ hover, selection }: { hover: Selection; selection: Selection }) {
+function UI({
+  hover,
+  selection,
+  setSelection,
+}: {
+  hover: Selection;
+  selection: Selection;
+  setSelection: Dispatch<SetStateAction<Selection>>;
+}) {
   return (
     <div
       style={{
@@ -52,6 +60,7 @@ function UI({ hover, selection }: { hover: Selection; selection: Selection }) {
               height: hover ? "max-content" : "100vh",
               width: "50%",
               borderRadius: "1rem",
+              pointerEvents: "all",
             }}
           >
             <h2
@@ -78,6 +87,20 @@ function UI({ hover, selection }: { hover: Selection; selection: Selection }) {
                       </li>
                     )
                   )}
+                </ul>
+              </div>
+            )}
+            {!hover && (selection as Area).contains && (
+              <div>
+                <h3>Contiens</h3>
+                <ul>
+                  {(selection as Area).contains?.map((shape) => (
+                    <li style={{ fontWeight: "bold" }}>
+                      <button onClick={() => setSelection(shape)}>
+                        {shape.name}
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </div>
             )}

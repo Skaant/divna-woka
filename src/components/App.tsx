@@ -15,7 +15,7 @@ function App() {
           selection={selection}
           setSelection={setSelection}
         />
-        <UI hover={hover} selection={selection} />
+        <UI hover={hover} selection={selection} setSelection={setSelection} />
       </>
     </div>
   );

@@ -1,5 +1,4 @@
-import { Point } from "./Point";
-import { Path } from "./Path";
-import { Area } from "./Area";
+import { Shape } from "./unions/Shape";
+import { Plant } from "./Plant";
 
-export type Selection = undefined | Point | Path | Area;
+export type Selection = undefined | Shape | Plant;
