@@ -20,13 +20,11 @@ export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
         {
           id: "pinda",
           name: "Pinda",
-          species: SPECIES.PINUS_SYLVESTRIS,
           coords: [44.519191, 5.676146],
         },
         {
           id: "pingwu",
           name: "Pingwu",
-          species: SPECIES.PINUS_SYLVESTRIS,
           coords: [44.518611, 5.676131],
         },
       ],
