@@ -9,7 +9,7 @@ import { Flora } from "../../types/Flora";
 import { SPECIES } from "../../data/species/species.enum";
 import Plant from "./Plant";
 
-const { WIDTH, HEIGHT, LAT_LONG_METERS_PERCENTS, PIXELS_BY_METER } = CARTO_DATA;
+const { WIDTH, HEIGHT, LAT_LONG_METERS_PERCENTS } = CARTO_DATA;
 
 const LEVELS_COLOR = ["#888", "#8aa", "#8cc"];
 
