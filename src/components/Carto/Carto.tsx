@@ -5,8 +5,11 @@ import { LEVEL_0_AREAS } from "../../data/areas/level-0";
 import { LEVEL_1_AREAS } from "../../data/areas/level-1";
 import { LEVEL_2_AREAS } from "../../data/areas/level-2";
 import { Selection } from "../../types/Selection";
+import { Flora } from "../../types/Flora";
+import { SPECIES } from "../../data/species/species.enum";
+import { getLatLongToXY } from "../../helpers/getLatLongToXY";
 
-const { WIDTH, HEIGHT, LAT_LONG_METERS_PERCENTS } = CARTO_DATA;
+const { WIDTH, HEIGHT, LAT_LONG_METERS_PERCENTS, PIXELS_BY_METER } = CARTO_DATA;
 
 const LEVELS_COLOR = ["#888", "#8aa", "#8cc"];
 
@@ -39,6 +42,32 @@ function Carto({
             setSelection={setSelection}
           />
         ))
+      )}
+      {[LEVEL_0_AREAS, LEVEL_1_AREAS, LEVEL_2_AREAS].map((areas) =>
+        areas
+          .filter((area) => area.flora)
+          .map(({ flora }) =>
+            Object.entries(flora as Flora).map(([species, { individuals }]) =>
+              individuals?.map(({ coords, ...plantData }) => {
+                const [x, y] = getLatLongToXY(coords);
+                const plant = {
+                  ...plantData,
+                  coords,
+                  species: species as SPECIES,
+                };
+                return (
+                  <circle
+                    cx={x}
+                    cy={y}
+                    r={0.4 * PIXELS_BY_METER}
+                    onClick={() => setSelection(plant)}
+                    onMouseEnter={() => setHover(plant)}
+                    onMouseLeave={() => setHover(undefined)}
+                  />
+                );
+              })
+            )
+          )
       )}
     </svg>
   );
