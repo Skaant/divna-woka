@@ -7,7 +7,7 @@ import { LEVEL_2_AREAS } from "../../data/areas/level-2";
 import { Selection } from "../../types/Selection";
 import { Flora } from "../../types/Flora";
 import { SPECIES } from "../../data/species/species.enum";
-import { getLatLongToXY } from "../../helpers/getLatLongToXY";
+import Plant from "./Plant";
 
 const { WIDTH, HEIGHT, LAT_LONG_METERS_PERCENTS, PIXELS_BY_METER } = CARTO_DATA;
 
@@ -49,20 +49,18 @@ function Carto({
           .map(({ flora }) =>
             Object.entries(flora as Flora).map(([species, { individuals }]) =>
               individuals?.map(({ coords, ...plantData }) => {
-                const [x, y] = getLatLongToXY(coords);
                 const plant = {
                   ...plantData,
                   coords,
                   species: species as SPECIES,
                 };
                 return (
-                  <circle
-                    cx={x}
-                    cy={y}
-                    r={0.4 * PIXELS_BY_METER}
-                    onClick={() => setSelection(plant)}
-                    onMouseEnter={() => setHover(plant)}
-                    onMouseLeave={() => setHover(undefined)}
+                  <Plant
+                    plant={plant}
+                    hover={hover}
+                    setHover={setHover}
+                    selection={selection}
+                    setSelection={setSelection}
                   />
                 );
               })
