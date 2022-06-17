@@ -1,9 +1,8 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { addFlora } from "../../helpers/addFlora";
-import { Area } from "../../types/Area";
-import { Flora } from "../../types/Flora";
 import { Selection } from "../../types/Selection";
 import CoordsScale from "./CoordsScale";
+import FocusModal from "./FocusModal/FocusModal";
+import SelectionModal from "./FocusModal/SelectionModal";
 
 function UI({
   hover,
@@ -23,13 +22,13 @@ function UI({
         left: 0,
         width: "100vw",
         pointerEvents: "none",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
       }}
     >
       <div
         style={{
+          position: "absolute",
+          top: 0,
+          width: "100%",
           display: "flex",
           justifyContent: "space-between",
         }}
@@ -46,75 +45,19 @@ function UI({
       </div>
       <div
         style={{
+          position: "absolute",
+          bottom: 0,
           display: "flex",
           justifyContent: "center",
           width: "100%",
         }}
       >
-        {(hover || selection) && (
-          <div
-            style={{
-              marginBottom: "-1rem",
-              padding: "1rem 1rem 2rem",
-              boxShadow: "0 0 5px black",
-              backgroundColor: "white",
-              height: hover ? "max-content" : "100vh",
-              width: "50%",
-              borderRadius: "1rem",
-              pointerEvents: "all",
-            }}
-          >
-            <h2
-              style={{
-                textAlign: "center",
-              }}
-            >
-              {(hover || selection)?.name}
-            </h2>
-            {!hover &&
-              ((selection as Area).flora || (selection as Area).contains) && (
-                <div>
-                  <h3 style={{ marginLeft: "8px" }}>Liste des plantes</h3>
-                  <ul>
-                    {Object.entries(
-                      ((selection as Area).contains || []).reduce<Flora>(
-                        (floraSum, shape) =>
-                          (shape as Area).flora
-                            ? addFlora(floraSum, (shape as Area).flora)
-                            : floraSum,
-                        (selection as Area).flora || {}
-                      )
-                    ).map(([plant, { count, individuals }]) => {
-                      return (
-                        <li>
-                          <>
-                            {plant} : {count}
-                            {count && individuals && individuals.length
-                              ? " et "
-                              : ""}
-                            {individuals?.map(({ name }) => name).join(", ")}
-                          </>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
-            {!hover && (selection as Area).contains && (
-              <div>
-                <h3>Contiens</h3>
-                <ul>
-                  {(selection as Area).contains?.map((shape) => (
-                    <li style={{ fontWeight: "bold" }}>
-                      <button onClick={() => setSelection(shape)}>
-                        {shape.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+        {hover ? (
+          <FocusModal focus={hover} />
+        ) : (
+          selection && (
+            <SelectionModal selection={selection} setSelection={setSelection} />
+          )
         )}
       </div>
     </div>
