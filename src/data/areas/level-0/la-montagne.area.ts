@@ -1,6 +1,7 @@
 import { Area } from "../../../types/Area";
 import { AREAS } from "../areas.enum";
 import { CASCADES_AUX_FLEURS_D_OR_AREA } from "../level-1/cascades-aux-fleurs-d-or.area";
+import { TERRASSE_VERTU_DU_NORD_AREA } from "../level-2/terrasse-vertu-du-nord.area";
 
 export const LA_MONTAGNE_AREA: Area = {
   id: AREAS.LA_MONTAGNE,
@@ -32,5 +33,5 @@ export const LA_MONTAGNE_AREA: Area = {
     [44.516618, 5.675],
     [44.518304, 5.675611],
   ],
-  contains: [CASCADES_AUX_FLEURS_D_OR_AREA],
+  contains: [CASCADES_AUX_FLEURS_D_OR_AREA, TERRASSE_VERTU_DU_NORD_AREA],
 };
