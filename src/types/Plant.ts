@@ -1,6 +1,6 @@
 import { Point } from "./Point";
-import { PLANTS } from "../data/plants/plants.enum";
+import { SPECIES } from "../data/species/species.enum";
 
 export type Plant = Point & {
-  species: PLANTS;
+  species: SPECIES;
 };

@@ -1,4 +1,4 @@
-export enum PLANTS {
+export enum SPECIES {
   /** Aphyllante de Montpellier */
   APHYLLANTHES_MONSPELIENSIS = "APHYLLANTHES_MONSPELIENSIS",
   /** Lavande vraie */

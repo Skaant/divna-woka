@@ -1,7 +1,5 @@
 import { Area } from "../../../types/Area";
-import { Plant } from "../../../types/Plant";
-import { Range } from "../../../types/Range";
-import { PLANTS } from "../../plants/plants.enum";
+import { SPECIES } from "../../species/species.enum";
 import { AREAS } from "../areas.enum";
 
 export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
@@ -22,13 +20,13 @@ export const TERRASSE_VERTU_DU_NORD_AREA: Area = {
         {
           id: "pinda",
           name: "Pinda",
-          species: PLANTS.PINUS_SYLVESTRIS,
+          species: SPECIES.PINUS_SYLVESTRIS,
           coords: [44.519191, 5.676146],
         },
         {
           id: "pingwu",
           name: "Pingwu",
-          species: PLANTS.PINUS_SYLVESTRIS,
+          species: SPECIES.PINUS_SYLVESTRIS,
           coords: [44.518611, 5.676131],
         },
       ],
